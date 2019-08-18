@@ -1,5 +1,12 @@
 # Проверка чека ФНС
 
+[![CircleCI](https://circleci.com/gh/saundefined/fns-receipt-sdk.svg?style=svg)](https://circleci.com/gh/saundefined/fns-receipt-sdk)
+[![Latest Stable Version](https://poser.pugx.org/saundefined/fns-receipt/v/stable)](https://packagist.org/packages/saundefined/fns-receipt)
+[![Latest Unstable Version](https://poser.pugx.org/saundefined/fns-receipt/v/unstable)](https://packagist.org/packages/saundefined/fns-receipt)
+[![codecov](https://codecov.io/gh/saundefined/fns-receipt-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/saundefined/fns-receipt-sdk)
+[![Total Downloads](https://poser.pugx.org/saundefined/fns-receipt/downloads)](https://packagist.org/packages/saundefined/fns-receipt)
+[![License](https://poser.pugx.org/saundefined/fns-receipt/license)](https://packagist.org/packages/saundefined/fns-receipt)
+
 ## Авторизация
 
 ### Регистрация
@@ -14,7 +21,7 @@ $client = new FNS\Receipt\Client('79991234567');
 $client->authorization()->signUp($user);
 ```
 
-## Восстановление пароля
+### Восстановление пароля
 ```php
 <?php
 
@@ -22,7 +29,7 @@ $client = new FNS\Receipt\Client('79991234567');
 $client->authorization()->restore();
 ```
 
-## Авторизация
+### Авторизация
 ```php
 <?php
 

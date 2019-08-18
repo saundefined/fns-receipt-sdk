@@ -2,7 +2,6 @@
 
 namespace FNS\Receipt;
 
-use Exception;
 use FNS\Receipt\Exception\InvalidPhoneFormatException;
 use FNS\Receipt\Model\Result;
 use GuzzleHttp\Client as GuzzleClient;
@@ -36,6 +35,11 @@ class Client
         ]);
     }
 
+    public function setClient(GuzzleClient $client): void
+    {
+        $this->client = $client;
+    }
+
     /**
      * Запрос к API
      *
@@ -49,7 +53,7 @@ class Client
     {
         $data = [
             'headers' => [
-                'Content-Type' => 'application/json;',
+                'Content-Type' => 'application/json;charset=UTF-8',
                 'device-id' => '',
                 'device-os' => '',
             ],
@@ -68,17 +72,27 @@ class Client
             $response = $this->client->post($command, $data);
         }
 
+        $content = $response->getBody()->getContents();
+        $data = json_decode($content, true);
+
         $result = new Result();
 
         if (!in_array($response->getStatusCode(), [200, 204], true)) {
-            $result->addError($response->getBody()->getContents());
+            if ($data !== null && json_last_error() === JSON_ERROR_NONE) {
+                if (is_array($data)) {
+                    foreach ($data as $error) {
+                        $result->addError($error);
+                    }
+                } else {
+                    $result->addError($data);
+                }
+            } else {
+                $result->addError($content);
+            }
         }
 
-        try {
-            $content = json_decode($response->getBody()->getContents(), true);
+        if ($data !== null && json_last_error() === JSON_ERROR_NONE) {
             $result->addBody($content);
-        } catch (Exception $e) {
-
         }
 
         return $result;
@@ -105,7 +119,7 @@ class Client
     /**
      * @return string
      */
-    public function getCredentials(): string
+    public function getCredentials(): ?string
     {
         return $this->credentials;
     }

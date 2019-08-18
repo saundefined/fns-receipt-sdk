@@ -33,7 +33,7 @@ class Receipt
     /**
      * @return string
      */
-    public function getNumber(): string
+    public function getNumber(): ?string
     {
         return $this->number;
     }
@@ -55,7 +55,7 @@ class Receipt
     /**
      * @return string
      */
-    public function getDocument(): string
+    public function getDocument(): ?string
     {
         return $this->document;
     }
@@ -71,7 +71,7 @@ class Receipt
     /**
      * @return string
      */
-    public function getTag(): string
+    public function getTag(): ?string
     {
         return $this->tag;
     }
@@ -87,7 +87,7 @@ class Receipt
     /**
      * @return int
      */
-    public function getType(): int
+    public function getType(): ?int
     {
         return $this->type;
     }
@@ -109,7 +109,7 @@ class Receipt
     /**
      * @return DateTime
      */
-    public function getDate(): DateTime
+    public function getDate(): ?DateTime
     {
         return $this->date;
     }
@@ -125,7 +125,7 @@ class Receipt
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function getPrice(): ?float
     {
         return $this->price;
     }

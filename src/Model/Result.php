@@ -22,4 +22,9 @@ class Result
     {
         $this->body = $body;
     }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
 }
