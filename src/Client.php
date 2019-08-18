@@ -73,26 +73,23 @@ class Client
         }
 
         $content = $response->getBody()->getContents();
-        $data = json_decode($content, true);
+        $data = (array)json_decode($content, true);
+        $isJson = $data !== null && json_last_error() === JSON_ERROR_NONE;
 
         $result = new Result();
 
         if (!in_array($response->getStatusCode(), [200, 204], true)) {
-            if ($data !== null && json_last_error() === JSON_ERROR_NONE) {
-                if (is_array($data)) {
-                    foreach ($data as $error) {
-                        $result->addError($error);
-                    }
-                } else {
-                    $result->addError($data);
+            if ($isJson) {
+                foreach ($data as $error) {
+                    $result->addError($error);
                 }
             } else {
                 $result->addError($content);
             }
         }
 
-        if ($data !== null && json_last_error() === JSON_ERROR_NONE) {
-            $result->addBody($content);
+        if ($isJson) {
+            $result->addBody($data);
         }
 
         return $result;
