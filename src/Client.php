@@ -74,7 +74,7 @@ class Client
 
         $content = $response->getBody()->getContents();
         $data = (array)json_decode($content, true);
-        $isJson = $data !== null && json_last_error() === JSON_ERROR_NONE;
+        $isJson = json_last_error() === JSON_ERROR_NONE;
 
         $result = new Result();
 

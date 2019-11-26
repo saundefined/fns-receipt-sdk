@@ -1,6 +1,6 @@
 # Проверка чека ФНС
 
-[![CircleCI](https://circleci.com/gh/saundefined/fns-receipt-sdk.svg?style=svg)](https://circleci.com/gh/saundefined/fns-receipt-sdk)
+![GitHub Actions](https://github.com/saundefined/fns-receipt-sdk/workflows/Testing%20with%20PHPUnit/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/saundefined/fns-receipt/v/stable)](https://packagist.org/packages/saundefined/fns-receipt)
 [![Latest Unstable Version](https://poser.pugx.org/saundefined/fns-receipt/v/unstable)](https://packagist.org/packages/saundefined/fns-receipt)
 [![codecov](https://codecov.io/gh/saundefined/fns-receipt-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/saundefined/fns-receipt-sdk)
